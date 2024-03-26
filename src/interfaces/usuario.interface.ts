@@ -1,6 +1,6 @@
 export interface UsuarioInterface {
-  _id: any | string
-  nome: string
-  senha: string
-  avatar: string
+  _id: string | any;
+  nome?: string;
+  senha?: string;
+  avatar?: string;
 }
