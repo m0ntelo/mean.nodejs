@@ -11,4 +11,11 @@ mensagemRoute.post(
   mensagemController.enviar
 )
 
+mensagemRoute.get(
+  '/:id',
+  authMiddlewares.autorizarUsuarioByParams,
+  authMiddlewares.autorizarUsuarioByToken, 
+  mensagemController.listar
+)
+
 export default mensagemRoute
