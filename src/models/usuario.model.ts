@@ -28,11 +28,12 @@ UsuarioSchema.pre<UsuarioModel>('save', async function criptografarSenha() {
 UsuarioSchema.pre<UsuarioModel>('save', async function gerarAvatar() {
   const randomId = Math.floor(Math.random() * (1000000)) + 1
 
+  // remover API
   this.avatar = `https://api.adorable.io/avatars/285/${randomId}.png`
 })
 
 UsuarioSchema.methods.compararSenhas = function(senha: string): Promise<boolean> {
-  return bcrypt.compare(senha, this)
+  return bcrypt.compare(senha, this.senha)
 }
 
 export default model<UsuarioModel>('Usuario', UsuarioSchema)
