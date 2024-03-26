@@ -25,5 +25,13 @@
     "prettier": "^2.0.2",
     "sucrase": "^3.12.1",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/mongoose": "^5.11.97",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.2.3"
   }
 }
