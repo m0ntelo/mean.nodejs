@@ -5,7 +5,8 @@ import authMiddlewares from "../middlewares/auth.middlewares";
 const mensagemRoute = Router()
 
 mensagemRoute.post(
-  '/:id', 
+  '/:id',
+  authMiddlewares.autorizarUsuarioByParams,
   authMiddlewares.autorizarUsuarioByToken, 
   mensagemController.enviar
 )
