@@ -1,8 +1,10 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model } from "mongoose";
 import { UsuarioInterface } from "../interfaces/usuario.interface";
 import bcrypt from "bcrypt";
 
-interface UsuarioModel extends UsuarioInterface, Document {}
+interface UsuarioModel extends UsuarioInterface, Document {
+  compararSenhas(senha: string): Promise<boolean>
+}
 
 const UsuarioSchema = new Schema({
   nome: {
@@ -28,5 +30,9 @@ UsuarioSchema.pre<UsuarioModel>('save', async function gerarAvatar() {
 
   this.avatar = `https://api.adorable.io/avatars/285/${randomId}.png`
 })
+
+UsuarioSchema.methods.compararSenhas = function(senha: string): Promise<boolean> {
+  return bcrypt.compare(senha, this)
+}
 
 export default model<UsuarioModel>('Usuario', UsuarioSchema)
