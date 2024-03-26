@@ -1,6 +1,7 @@
 import express from 'express';
 import cors  from 'cors';
 import mongoose from 'mongoose';
+import usuarioRoute from './routes/usuario.router';
 
 export class App {
   private express: express.Application
@@ -8,9 +9,10 @@ export class App {
 
   constructor() {
     this.express = express()
-    this.listen()
     this.database()
     this.middlewares()
+    this.routes()
+    this.listen()
   }
 
   public getApp(): express.Application {
@@ -30,5 +32,9 @@ export class App {
 
   private database(): void {
     mongoose.connect('mongodb+srv://m0ntelo:bLFm6eNIr3Yjnrdd@cluster0.awkrgrr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+  }
+
+  private routes(): void {
+    this.express.use("/usuarios", usuarioRoute)
   }
 }
